@@ -66,5 +66,8 @@ Remember, anytime you want to restart the program, make sure to activate the vir
 
 # Creating an .exe file
 
-* Install ```pyinstaller```
-* Run ```pyinstaller --onefile ct2_main.py```
+1. Install ```pyinstaller```
+```
+pip install pyinstaller
+```
+2. Run ```pyinstaller --onefile ct2_main.py```
