@@ -1,6 +1,6 @@
 # Record and Transcribe Audio Using Ctranslate2!
 
-Record audio and save a transcription to your system's clipboard with ctranslate2 and faster-whisper. Then have that transcription corrected by GPT-4o-mini using Simon Willison's [llm library](https://github.com/simonw/llm) and saved to your clipboard.
+Record audio and save a transcription to your system's clipboard with ctranslate2 and faster-whisper. Then have that transcription formatted by GPT-4o-mini (or OpenAI model of your choosing) for natural line breaks (i.e. paragraphs) during natural pauses.
 
 ## Prerequisites
 1) [Python 3.11](https://www.python.org/downloads/release/python-3119/)
@@ -27,11 +27,7 @@ Run the installation script.
 python setup.py
 ```
 ### Step 4
-Set your OpenAI API key using `llm` in your terminal:
-```
-llm keys set openai
-```
-This will then prompt you to enter your API key.
+Add your OpenAI API key to your system environment variables as `OPENAI_API_KEY`.
 
 ### Step 5 (only for Linux or Mac users)
 The ```setup.py``` script should handle everything, but if you encounter errors on Linux or MacOS you might need to install additional dependencies.  You can try using [linux-mac_dependencies.py](https://github.com/mikecreighton/ctranslate2-faster-whisper-transcriber/blob/main/linux-mac_dependencies.py) or the following:
