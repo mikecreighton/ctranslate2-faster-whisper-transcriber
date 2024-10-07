@@ -68,6 +68,7 @@ class MyWindow(QWidget):
             self.device_dropdown.addItems(["cpu", "cuda"])
         else:
             self.device_dropdown.addItems(["cpu"])
+        
 
         h_layout.addWidget(self.device_dropdown)
         self.device_dropdown.setCurrentText(device)
@@ -86,19 +87,26 @@ class MyWindow(QWidget):
 
         self.device_dropdown.currentTextChanged.connect(self.update_quantization_options)
         self.model_dropdown.currentTextChanged.connect(self.update_quantization_options)
-        self.update_quantization_options()
+        self.update_quantization_options(quantization=quantization)
 
         self.recorder.update_status_signal.connect(self.update_status)
         self.recorder.enable_widgets_signal.connect(self.set_widgets_enabled)
 
-    def update_quantization_options(self):
+    def update_quantization_options(self, quantization = None):
+        """
+        The incoming quantization is the quantization that was loaded from the config file.
+        It may not be in the list of supported quantizations for the model and device.
+        """
         model = self.model_dropdown.currentText()
         device = self.device_dropdown.currentText()
         self.quantization_dropdown.clear()
         options = self.get_quantization_options(model, device)
         self.quantization_dropdown.addItems(options)
-        if self.quantization_dropdown.currentText() not in options and options:
+
+        if quantization not in options and options:
             self.quantization_dropdown.setCurrentText(options[0])
+        else:
+            self.quantization_dropdown.setCurrentText(quantization)
 
     def get_quantization_options(self, model, device):
         distil_models = {
